@@ -84,28 +84,29 @@ class ApiController extends CI_Controller
     //}
 
     // Create a new student
-    public function createStudent()
+    public function register()
     {
 
         header('Content-Type: application/json');
         $data = array(
             'name' => $this->input->post('name'),
-            'rollNo' => $this->input->post('rollNo'),
-            'mobile' => $this->input->post('mobile'),
-            'dob' => $this->input->post('dob'),
+            // 'rollNo' => $this->input->post('rollNo'),
+            // 'date' => $this->input->post('mobile'),
+            'email' => $this->input->post('email'),
+            'password' => $this->input->post('password'),
             'gender' => $this->input->post('gender'),
-            'className' => $this->input->post('className'),
-            'address' => $this->input->post('address'),
-            'photo' => $this->input->post('photo'),
+            // 'className' => $this->input->post('className'),
+            // 'address' => $this->input->post('address'),
+            // 'photo' => $this->input->post('photo'),
             // Set values for other fields
         );
 
-        $student_id = $this->ApiModel->createStudent($data);
-        if ($student_id) {
+        $register = $this->ApiModel->register($data);
+        if ($register) {
             $this->output->set_output(json_encode([
                 'status' => true,
                 'message' => 'Student created successfully',
-                'student_id' => $student_id
+                'student_id' => $register
             ]));
         } else {
             $this->output->set_output(json_encode([

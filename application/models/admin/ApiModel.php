@@ -36,9 +36,9 @@ class ApiModel extends CI_Model {
 
         }
 
-        public function createStudent($data) {
+        public function register($data) {
             
-            $this->db->insert('student',$data);
+            $this->db->insert('login',$data);
             return $this->db->insert_id();
         }
         
