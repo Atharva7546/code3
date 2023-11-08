@@ -30,10 +30,10 @@ class ApiController extends CI_Controller
     {
         header('Content-Type: application/json');
         // $this->formvalidation;
-        $rollNo = $this->input->post('rollNo');
-        $mobile = $this->input->post('mobile');
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
         // Validate the input
-        if (empty($rollNo) || empty($mobile)) {
+        if (empty($email) || empty($password)) {
             $this->output->set_status_header(400);
             $response['status'] = 'error';
             $response['message'] = 'Roll number and mobile number are required.';
@@ -41,9 +41,9 @@ class ApiController extends CI_Controller
             return;
         }
         // Check if the credentials are valid
-        $student = $this->ApiModel->login($rollNo, $mobile);
+        $login = $this->ApiModel->login($email, $password);
 
-        if ($student) {
+        if ($login) {
             $response['status'] = 'success';
             $response['message'] = 'Login successful.';
             $this->output->set_output(json_encode($response));

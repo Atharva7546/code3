@@ -4,15 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class ApiModel extends CI_Model {
   
 
-    public function login($rollNo,$mobile) {
+    public function login($email,$password) {
         // $this->db->where('id', $id);
         // $this->db->where('password', $data);
         // $this->db->insert('student',$data);
         // return $this->db->insert_id();
         
-        $this->db->where('rollNo', $rollNo);
-        $this->db->where('mobile', $mobile);
-        $query = $this->db->get('student');
+        $this->db->where('email', $email);
+        $this->db->where('password', $password);
+        $query = $this->db->get('login');
 
         if ($query->num_rows() > 0) {
             return $query->row_array();
